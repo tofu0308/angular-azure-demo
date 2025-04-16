@@ -13,7 +13,8 @@ export interface WeatherForecast {
   providedIn: 'root',
 })
 export class WeatherService {
-  private apiUrl = 'http://localhost:5102/weatherforecast';
+  private apiUrl =
+    'https://my-app-20250411-01-hhhhhxckh3hugebx.japaneast-01.azurewebsites.net/weatherforecast';
 
   constructor(private http: HttpClient) {}
 
