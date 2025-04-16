@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '@env/environment';
 
 export interface WeatherForecast {
   date: string;
@@ -13,8 +14,7 @@ export interface WeatherForecast {
   providedIn: 'root',
 })
 export class WeatherService {
-  private apiUrl =
-    'https://my-app-20250411-01-hhhhhxckh3hugebx.japaneast-01.azurewebsites.net/weatherforecast';
+  private apiUrl = `${environment.apiBaseUrl}/weatherforecast`;
 
   constructor(private http: HttpClient) {}
 
