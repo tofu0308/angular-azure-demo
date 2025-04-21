@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { WeatherService, WeatherForecast } from './services/weather.service';
+import { MemoListComponent } from './components/memo-list/memo-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [NgFor],
+  imports: [NgFor, MemoListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
