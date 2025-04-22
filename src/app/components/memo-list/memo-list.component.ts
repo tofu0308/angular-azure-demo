@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MemoService, Memo } from '../../services/memo.service';
+import { MemoService } from '../../services/memo.service';
 import { NgFor } from '@angular/common';
+import { MemoStatus, Memo } from '@models/memo.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-memo-list',
-  imports: [NgFor],
+  imports: [NgFor, FormsModule],
   templateUrl: './memo-list.component.html',
 })
 export class MemoListComponent implements OnInit {
@@ -13,8 +15,25 @@ export class MemoListComponent implements OnInit {
   constructor(private memoService: MemoService) {}
 
   ngOnInit(): void {
+    this.getMemos();
+  }
+
+  getMemos() {
     this.memoService.getMemos().subscribe((data) => {
       this.memos = data;
+    });
+  }
+
+  newMemoTitle = '';
+  addMemo() {
+    const newMemo: Omit<Memo, 'id'> = {
+      title: this.newMemoTitle,
+      status: MemoStatus.Open,
+    };
+
+    this.memoService.addMemo(newMemo).subscribe(() => {
+      this.getMemos(); // 一覧再取得
+      this.newMemoTitle = '';
     });
   }
 }

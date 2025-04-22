@@ -1,3 +1,6 @@
 <div *ngFor="let memo of memos">
   <p>ID: {{ memo.id }} / Title: {{ memo.title }} / Status: {{ memo.status }}</p>
 </div>
+
+<input [(ngModel)]="newMemoTitle" placeholder="メモのタイトル" />
+<button (click)="addMemo()">追加</button>
