@@ -2,21 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-
-export enum MemoStatus {
-  Open = 0,
-  ToDo = 1,
-  InProgress = 2,
-  Completed = 3,
-  Close = 4,
-  ReOpen = 5,
-}
-
-export interface Memo {
-  id: number;
-  title: string;
-  status: MemoStatus;
-}
+import { MemoStatus, Memo } from '../models/memo.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +14,9 @@ export class MemoService {
 
   getMemos(): Observable<Memo[]> {
     return this.http.get<Memo[]>(this.apiUrl);
+  }
+
+  addMemo(memo: Omit<Memo, 'id'>): Observable<Memo> {
+    return this.http.post<Memo>(`${this.apiUrl}`, memo);
   }
 }
