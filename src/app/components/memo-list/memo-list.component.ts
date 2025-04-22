@@ -36,4 +36,10 @@ export class MemoListComponent implements OnInit {
       this.newMemoTitle = '';
     });
   }
+
+  changeStatus(memo: Memo, newStatus: MemoStatus): void {
+    this.memoService.updateMemoStatus(memo.id, newStatus).subscribe(() => {
+      this.getMemos();
+    });
+  }
 }

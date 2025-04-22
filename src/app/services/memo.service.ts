@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import { Memo } from '@models/memo.model';
+import { Memo, MemoStatus } from '@models/memo.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,5 +18,10 @@ export class MemoService {
 
   addMemo(memo: Omit<Memo, 'id'>): Observable<Memo> {
     return this.http.post<Memo>(`${this.apiUrl}`, memo);
+  }
+
+  updateMemoStatus(id: number, status: MemoStatus): Observable<any> {
+    const url = `${this.apiUrl}/${id}/status`;
+    return this.http.patch(url, { status });
   }
 }
