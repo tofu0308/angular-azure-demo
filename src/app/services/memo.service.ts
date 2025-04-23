@@ -24,4 +24,8 @@ export class MemoService {
     const url = `${this.apiUrl}/${id}/status`;
     return this.http.patch(url, { status });
   }
+
+  deleteMemo(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

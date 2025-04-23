@@ -42,4 +42,10 @@ export class MemoListComponent implements OnInit {
       this.getMemos();
     });
   }
+
+  deleteMemo(id: number): void {
+    this.memoService.deleteMemo(id).subscribe(() => {
+      this.getMemos();
+    });
+  }
 }
