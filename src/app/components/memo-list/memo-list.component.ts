@@ -11,6 +11,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class MemoListComponent implements OnInit {
   memos: Memo[] = [];
+  memoStatuses = [
+    { value: 0, label: '未着手' },
+    { value: 1, label: '進行中' },
+    { value: 2, label: '確認中' },
+    { value: 3, label: '完了' },
+  ];
+  newMemoTitle = '';
 
   constructor(private memoService: MemoService) {}
 
@@ -24,7 +31,6 @@ export class MemoListComponent implements OnInit {
     });
   }
 
-  newMemoTitle = '';
   addMemo() {
     const newMemo: Omit<Memo, 'id'> = {
       title: this.newMemoTitle,
@@ -38,6 +44,7 @@ export class MemoListComponent implements OnInit {
   }
 
   changeStatus(memo: Memo, newStatus: MemoStatus): void {
+    console.log('change');
     this.memoService.updateMemoStatus(memo.id, newStatus).subscribe(() => {
       this.getMemos();
     });

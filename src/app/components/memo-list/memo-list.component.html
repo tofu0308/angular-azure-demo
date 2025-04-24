@@ -1,8 +1,14 @@
 <ul *ngFor="let memo of memos">
   <li>
     ID: {{ memo.id }} / Title: {{ memo.title }} / Status: {{ memo.status }}
-    <button (click)="changeStatus(memo, 1)">完了</button>
-    <button (click)="changeStatus(memo, 0)">未完了</button>
+    <select
+      [ngModel]="memo.status"
+      (ngModelChange)="changeStatus(memo, $event)"
+    >
+      <option *ngFor="let s of memoStatuses" [value]="s.value">
+        {{ s.label }}
+      </option>
+    </select>
     <button (click)="deleteMemo(memo.id)">削除</button>
   </li>
 </ul>
