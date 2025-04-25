@@ -1,4 +1,9 @@
 <section>
+  <p>
+    全 {{ memoSummary.totalCount }} 件 ／ 完了
+    {{ memoSummary.completedCount }} 件
+  </p>
+
   <ul *ngFor="let memo of memos | memoStatusFilter : filterStatus">
     <li>
       ID: {{ memo.id }} / Title: {{ memo.title }} / Status: {{ memo.status }}

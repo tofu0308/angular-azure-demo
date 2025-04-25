@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MemoService } from '../../services/memo.service';
 import { NgFor } from '@angular/common';
-import { MemoStatus, Memo } from '@models/memo.model';
+import { MemoStatus, Memo, MemoSummary } from '@models/memo.model';
 import { FormsModule } from '@angular/forms';
 import { MemoStatusFilterPipe } from '@pipes/memo-status-filter.pipe';
 
@@ -12,6 +12,10 @@ import { MemoStatusFilterPipe } from '@pipes/memo-status-filter.pipe';
 })
 export class MemoListComponent implements OnInit {
   memos: Memo[] = [];
+  memoSummary: MemoSummary = {
+    totalCount: 0,
+    completedCount: 0,
+  };
   memoStatuses = [
     { value: 0, label: '未着手' },
     { value: 1, label: '進行中' },
@@ -29,7 +33,8 @@ export class MemoListComponent implements OnInit {
 
   getMemos() {
     this.memoService.getMemos().subscribe((data) => {
-      this.memos = data;
+      this.memos = data.items;
+      this.memoSummary = data.summary;
     });
   }
 

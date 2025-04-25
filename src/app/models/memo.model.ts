@@ -7,8 +7,18 @@ export enum MemoStatus {
   ReOpen = 5,
 }
 
+export interface MemoListResponse {
+  items: Memo[];
+  summary: MemoSummary;
+}
+
 export interface Memo {
   id: number;
   title: string;
   status: MemoStatus;
+}
+
+export interface MemoSummary {
+  totalCount: number;
+  completedCount: number;
 }
