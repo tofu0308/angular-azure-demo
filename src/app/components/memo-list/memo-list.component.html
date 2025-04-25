@@ -1,17 +1,28 @@
-<ul *ngFor="let memo of memos">
-  <li>
-    ID: {{ memo.id }} / Title: {{ memo.title }} / Status: {{ memo.status }}
-    <select
-      [ngModel]="memo.status"
-      (ngModelChange)="changeStatus(memo, $event)"
-    >
-      <option *ngFor="let s of memoStatuses" [value]="s.value">
-        {{ s.label }}
+<section>
+  <ul *ngFor="let memo of memos | memoStatusFilter : filterStatus">
+    <li>
+      ID: {{ memo.id }} / Title: {{ memo.title }} / Status: {{ memo.status }}
+      <select
+        [ngModel]="memo.status"
+        (ngModelChange)="changeStatus(memo, $event)"
+      >
+        <option *ngFor="let s of memoStatuses" [value]="s.value">
+          {{ s.label }}
+        </option>
+      </select>
+      <button (click)="deleteMemo(memo.id)">削除</button>
+    </li>
+  </ul>
+  <div>
+    <input [(ngModel)]="newMemoTitle" placeholder="メモのタイトル" />
+    <button (click)="addMemo()">追加</button>
+  </div>
+  <div>
+    <select [(ngModel)]="filterStatus">
+      <option [ngValue]="null">すべて</option>
+      <option *ngFor="let status of memoStatuses" [ngValue]="status.value">
+        {{ status.label }}
       </option>
     </select>
-    <button (click)="deleteMemo(memo.id)">削除</button>
-  </li>
-</ul>
-
-<input [(ngModel)]="newMemoTitle" placeholder="メモのタイトル" />
-<button (click)="addMemo()">追加</button>
+  </div>
+</section>

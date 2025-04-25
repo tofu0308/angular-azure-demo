@@ -3,10 +3,11 @@ import { MemoService } from '../../services/memo.service';
 import { NgFor } from '@angular/common';
 import { MemoStatus, Memo } from '@models/memo.model';
 import { FormsModule } from '@angular/forms';
+import { MemoStatusFilterPipe } from '@pipes/memo-status-filter.pipe';
 
 @Component({
   selector: 'app-memo-list',
-  imports: [NgFor, FormsModule],
+  imports: [NgFor, FormsModule, MemoStatusFilterPipe],
   templateUrl: './memo-list.component.html',
 })
 export class MemoListComponent implements OnInit {
@@ -17,6 +18,7 @@ export class MemoListComponent implements OnInit {
     { value: 2, label: '確認中' },
     { value: 3, label: '完了' },
   ];
+  filterStatus: number | null = null;
   newMemoTitle = '';
 
   constructor(private memoService: MemoService) {}

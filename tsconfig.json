@@ -20,7 +20,8 @@
     "baseUrl": "./",
     "paths": {
       "@env/*": ["src/environments/*"],
-      "@models/*": ["src/app/models/*"]
+      "@models/*": ["src/app/models/*"],
+      "@pipes/*": ["src/app/pipes/*"]
     }
   },
   "angularCompilerOptions": {
