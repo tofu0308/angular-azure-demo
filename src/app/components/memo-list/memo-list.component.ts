@@ -44,6 +44,8 @@ export class MemoListComponent implements OnInit {
       status: MemoStatus.Open,
     };
 
+    if (this.newMemoTitle === '') return;
+
     this.memoService.addMemo(newMemo).subscribe(() => {
       this.getMemos(); // 一覧再取得
       this.newMemoTitle = '';
