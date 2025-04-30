@@ -19,7 +19,11 @@
     </li>
   </ul>
   <div>
-    <input [(ngModel)]="newMemoTitle" placeholder="メモのタイトル" />
+    <input
+      [(ngModel)]="newMemoTitle"
+      placeholder="メモのタイトル"
+      (keyup.enter)="addMemo()"
+    />
     <button (click)="addMemo()">追加</button>
   </div>
   <div>
