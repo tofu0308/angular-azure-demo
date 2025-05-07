@@ -22,7 +22,7 @@ export class MemoService {
 
   updateMemoStatus(id: number, status: MemoStatus): Observable<any> {
     const url = `${this.apiUrl}/${id}/status`;
-    return this.http.patch(url, { status: Number(status) });
+    return this.http.put(url, { status: Number(status) });
   }
 
   deleteMemo(id: number): Observable<void> {
