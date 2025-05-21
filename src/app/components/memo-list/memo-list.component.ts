@@ -53,7 +53,6 @@ export class MemoListComponent implements OnInit {
   }
 
   changeStatus(memo: Memo, newStatus: MemoStatus): void {
-    console.log('change');
     this.memoService.updateMemoStatus(memo.id, newStatus).subscribe(() => {
       this.getMemos();
     });
